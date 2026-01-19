@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Premium Palette */
+    --background: 30 30% 98%;
+    --foreground: 220 30% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 30% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 30% 15%;
+
+    /* Deep Premium Red */
+    --primary: 348 85% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Luxurious Gold */
+    --secondary: 42 85% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Royal Blue Accent */
+    --accent: 215 90% 30%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 30 20% 96%;
+    --muted-foreground: 220 10% 40%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 15% 90%;
+    --input: 220 15% 90%;
+    --ring: 348 85% 40%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Custom tokens with premium feel */
+    --gradient-primary: linear-gradient(135deg, hsl(348 85% 40%), hsl(355 80% 50%));
+    --gradient-gold: linear-gradient(135deg, hsl(42 85% 55%), hsl(48 90% 65%));
+    --gradient-hero: linear-gradient(to right bottom, hsl(348 85% 20% / 0.95), hsl(215 90% 20% / 0.9));
+    --gradient-accent: linear-gradient(135deg, hsl(215 90% 30%), hsl(215 80% 45%));
+
+    --shadow-primary: 0 10px 40px -10px hsl(348 85% 40% / 0.4);
+    --shadow-card: 0 10px 30px -5px hsl(220 30% 10% / 0.08);
+    --shadow-hover: 0 20px 40px -10px hsl(220 30% 10% / 0.15);
+  }
+
+  .dark {
+    --background: 220 30% 10%;
+    --foreground: 30 30% 95%;
+
+    --card: 220 30% 14%;
+    --card-foreground: 30 30% 95%;
+
+    --popover: 220 30% 14%;
+    --popover-foreground: 30 30% 95%;
+
+    --primary: 348 85% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 42 85% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 215 80% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 220 20% 18%;
+    --muted-foreground: 220 20% 70%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 348 85% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .heading-display {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  .section-title {
+    @apply text-3xl md:text-5xl font-bold text-foreground text-center mb-6 tracking-tight;
+    position: relative;
+  }
+
+  .section-title::after {
+    content: '';
+    @apply absolute left-1/2 -translate-x-1/2 bottom-[-10px] w-20 h-1.5 bg-gradient-to-r from-primary to-secondary rounded-full;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .floating-button {
+    @apply fixed right-4 bottom-4 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-110 bg-gradient-to-r from-primary to-secondary text-primary-foreground;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 border-transparent hover:border-primary/20;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .underline-animation {
+    @apply relative;
+  }
+
+  .underline-animation::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300;
+  }
+
+  .underline-animation:hover::after {
+    @apply w-full;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-lg bg-white/70 border border-white/20 shadow-lg dark:bg-black/30 dark:border-white/10;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-md bg-card/60 border border-border/50 shadow-card;
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/50 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary;
+  }
+}
